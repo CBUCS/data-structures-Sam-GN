@@ -1,59 +1,60 @@
-/*
 package com.data.data;
+
+import java.util.Arrays;
 
 public class mQueue implements ListInterface {
 
-    private int maxSize;
-    private int head;
-    private int tail;
-    private Object mArray [];
 
-    public mQueue (int n){
-       maxSize = n;
-       mArray = new Object[maxSize];
-       head = 0;
-       tail = 0;
+    private mLinkedList Queue;
+
+    public mQueue (){
+       Queue = new mLinkedList();
     }
 
     @Override
     public boolean add(Object item) {
-        if(tail<maxSize){
-            mArray [tail] = item;
-            tail++;
-            return true;
-        }
-        else
-            return false;
-    }
 
-    @Override
-    public boolean remove(Object item) {
-        if(tail>0) {
-            mArray[head] = null;
-            head++;
+       Queue.addAt(item,0);
             return true;
-        }
-        return false;
+    }
+    public Object dequeue (){
+        mNode n = new mNode();
+        n.item = Queue.grab();
+        Queue.removeAt(numItems()-1);
+        return n.item;
     }
 
     @Override
     public boolean contains(Object item) {
-        return false;
+        return Queue.contains(item);
     }
 
     @Override
     public int numItems() {
-        return 0;
-    }
-
-    @Override
-    public Object grab() {
-        return null;
+        return Queue.numItems();
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return Queue.toArray();
     }
+
+    @Override
+    public void print() {
+       Queue.print();
+    }
+
+    @Override
+    public boolean addAt(Object item, int position) { return false; }
+
+    @Override
+    public boolean remove(Object item) { return false; }
+
+    @Override
+    public boolean removeAt(int position) { return false; }
+
+    @Override
+    public Object grab() { return null; }
+
+
 }
-*/

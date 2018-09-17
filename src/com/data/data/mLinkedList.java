@@ -26,19 +26,24 @@ public class mLinkedList implements ListInterface {
         mNode n = new mNode();
         n.item = item;
         n.next = null;
+
         if(position==0){
             n.next = head;
             head = n;
+            return true;
         }
+        if(position>numItems())
+            return false;
         else {
             mNode n2 = head;
             for(int i=0;i<position-1;i++){
-                n = n.next;
+                n2 = n2.next;
             }
             n.next = n2.next;
             n2.next = n;
+            return true;
         }
-        return true;
+
     }
 
     @Override
@@ -68,6 +73,8 @@ public class mLinkedList implements ListInterface {
 
     @Override
     public boolean removeAt(int position) {
+        if(position>=numItems())
+            return false;
         if(position==0)
             head = head.next;
         else{
