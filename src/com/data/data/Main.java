@@ -9,7 +9,7 @@ public class Main {
         mList.print();
         System.out.print(String.valueOf(mList.numItems()));
 
-        mStack stack = new mStack() ;
+
 
     }
 
