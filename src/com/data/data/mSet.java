@@ -35,6 +35,13 @@ public class mSet implements ListInterface{
         return set.numItems();
     }
 
+    @Override
+    public Object grabAt(int position) {
+        mNode n =new mNode();
+        n.item = set.grabAt(position);
+        return n.item;
+    }
+
 
     @Override
     public Object[] toArray() {
@@ -51,17 +58,58 @@ public class mSet implements ListInterface{
         return true;
     }
 
-    public mSet union (mSet set1, mSet set2 ){
+    public mSet union ( mSet pSet1){
 
-       for (int i=0; i<set2.numItems();i++){
-           if(!set1.contains(set2.grabAt(i)));
-                set1.add(set2.grabAt(i));
-       }
-            return set1;
+      /* for (int i=0;i<pSet1.numItems();i++)
+       {
+           if (!set.contains(pSet1.grabAt(i)))
+           {
+               set.add(pSet1.grabAt(i));
+           }
+
+       }*/
+        mSet newSet = new mSet();
+        for(int j = 0; j<set.numItems();j++){
+            newSet.add(set.grabAt(j));
+        }
+        for (int i=0;i<pSet1.numItems();i++)
+            {
+                if (!newSet.contains(pSet1.grabAt(i)))
+                {
+                    newSet.add(pSet1.grabAt(i));
+                }
+
+            }
+        return newSet;
     }
 
-    @Override
-    public Object grabAt(int position) { return null; }
+    public mSet intersection (mSet pSet){
+        mSet newSet = new mSet();
+        for (int i=0;i<set.numItems();i++)
+            for(int j=0;j<pSet.numItems();j++)
+        {
+            if (set.grabAt(i)==pSet.grabAt(j))
+            {
+                newSet.add(set.grabAt(i));
+            }
+
+        }
+        return newSet;
+    }
+
+    public mSet difference (mSet pSet){
+        mSet intersection = intersection(pSet);
+        mSet union = union(pSet);
+        for(int i=0;i<intersection.numItems();i++){
+            if(union.contains(intersection.grabAt(i)));
+            union.remove(intersection.grabAt(i));
+        }
+        return union;
+    }
+
+
+
+
 
     @Override
     public boolean removeAt(int position) { return false; }

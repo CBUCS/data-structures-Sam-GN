@@ -101,7 +101,7 @@ public class mLinkedList implements ListInterface {
             n = n.next;
         }
             if(n.item==item)
-                return false;
+                return true;
         return false;
     }
 
@@ -126,7 +126,7 @@ public class mLinkedList implements ListInterface {
             n = n.next;
         return n.item;*/
         if(position>=numItems())
-            return false;
+            return null;
         if(position==0)
             return head.item;
         else{
