@@ -61,7 +61,7 @@ public class Main {
         //mSet set3 = set.union(set2);
        // mSet set3 = set.intersection(set2);
         mSet set3 = set.difference(set2);
-        set3.print();
+       // set3.print();
        //System.out.print(String.valueOf(set.contains(2)));
 
     }
