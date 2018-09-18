@@ -52,7 +52,7 @@ public class Main {
         set2.add(4);
         mSet set3 = new mSet();
         set3 = set3.union(set,set2);
-        set3.print();
+       // set3.print();
 
     }
 
