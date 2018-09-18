@@ -18,8 +18,8 @@ public class Main {
        stack.add(1);
        stack.add(2);
        stack.add(3);
-       stack.pop();
-       stack.print();
+     //  stack.pop();
+       //stack.print();
       // System.out.print(String.valueOf(stack.numItems()));
        //System.out.print(String.valueOf(stack.peak()));
 
@@ -28,9 +28,31 @@ public class Main {
         Q.add(2);
         Q.add(3);
 
-       Q.dequeue();
-     //  Q.print();
-        //System.out.print(String.valueOf(Q.numItems()));
+       //Q.dequeue();
+     // Q.print();
+
+        mDequeue dq = new mDequeue();
+        dq .addFromTail(1);
+        dq.addFromTail(2);
+        dq.addFromTail(3);
+        dq.addFromHead(0);
+        dq.addFromTail(4);
+        dq.dequeueFromHead();
+        dq.dequeueFromTail();
+       // dq.clear();
+        //dq.print();
+       // System.out.print(String.valueOf(dq.numItems()));
+        mSet set = new mSet();
+        mSet set2 = new mSet();
+        set.add(0);
+        set.add(1);
+        set.add(2);
+        set2.add(2);
+        set2.add(3);
+        set2.add(4);
+        mSet set3 = new mSet();
+        set3 = set3.union(set,set2);
+        set3.print();
 
     }
 

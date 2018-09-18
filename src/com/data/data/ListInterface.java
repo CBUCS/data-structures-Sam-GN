@@ -7,7 +7,8 @@ public interface ListInterface {
     boolean removeAt (int position);
     boolean contains (Object item);
     int numItems();
-    Object grab();
+    Object grabAt(int position);
     Object[] toArray();
     void print();
+    boolean clear();
 }

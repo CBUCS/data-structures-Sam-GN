@@ -20,12 +20,23 @@ public class mStack implements ListInterface {
     public Object pop (){
         if(stack.numItems()!=0){
             mNode n = new mNode();
-            n.item = stack.grab();
+            n.item = stack.grabAt(numItems()-1);
             stack.removeAt(numItems()-1);
             return n.item;
         }
         else
              return null;
+    }
+
+    public Object peak (){
+        if(stack.numItems()!=0){
+            mNode n = new mNode();
+            n.item = stack.grabAt(numItems()-1);
+            return n.item;
+        }
+        else
+            return null;
+
     }
 
 
@@ -51,12 +62,17 @@ public class mStack implements ListInterface {
        stack.print();
     }
 
+    @Override
+    public boolean clear(){
+        stack = new mLinkedList();
+        return true;
+    }
 
     @Override
     public boolean removeAt(int position) { return true; }
 
     @Override
-    public Object grab() { return null;}
+    public Object grabAt(int position) { return null;}
 
     @Override
     public boolean addAt(Object item, int position) {return true;}

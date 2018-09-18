@@ -19,7 +19,7 @@ public class mQueue implements ListInterface {
     }
     public Object dequeue (){
         mNode n = new mNode();
-        n.item = Queue.grab();
+        n.item = Queue.grabAt(numItems()-1);
         Queue.removeAt(numItems()-1);
         return n.item;
     }
@@ -43,7 +43,11 @@ public class mQueue implements ListInterface {
     public void print() {
        Queue.print();
     }
-
+    @Override
+    public boolean clear(){
+        Queue = new mLinkedList();
+        return true;
+    }
     @Override
     public boolean addAt(Object item, int position) { return false; }
 
@@ -54,7 +58,7 @@ public class mQueue implements ListInterface {
     public boolean removeAt(int position) { return false; }
 
     @Override
-    public Object grab() { return null; }
+    public Object grabAt(int position) { return null; }
 
 
 }

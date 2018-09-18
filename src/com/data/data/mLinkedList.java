@@ -93,6 +93,8 @@ public class mLinkedList implements ListInterface {
     @Override
     public boolean contains(Object item) {
         mNode n = head;
+        if(head ==null)
+            return false;
         while(n.next!=null){
             if(n.item==item)
                 return true;
@@ -118,11 +120,21 @@ public class mLinkedList implements ListInterface {
     }
 
     @Override
-    public Object grab() {
-        mNode n = head;
+    public Object grabAt(int position) {
+        /*mNode n = head;
         while(n.next!=null)
             n = n.next;
-        return n.item;
+        return n.item;*/
+        if(position>=numItems())
+            return false;
+        if(position==0)
+            return head.item;
+        else{
+            mNode n = head;
+            for(int i=0;i<position;i++)
+                n = n.next;
+            return n.item;
+        }
     }
 
     @Override
@@ -144,5 +156,10 @@ public class mLinkedList implements ListInterface {
             n = n.next;
         }*/
         System.out.print(Arrays.toString(toArray())+"\n");
+    }
+    @Override
+    public boolean clear(){
+        head = new mNode();
+        return true;
     }
 }
