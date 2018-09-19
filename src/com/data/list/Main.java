@@ -1,5 +1,7 @@
-package com.data.data;
+package com.data.list;
 
+
+import com.data.tree.mBinaryTree;
 
 public class Main {
     public static void main(String[] args){
@@ -61,9 +63,15 @@ public class Main {
         //mSet set3 = set.union(set2);
        // mSet set3 = set.intersection(set2);
         mSet set3 = set.difference(set2);
-        set3.print();
+       // set3.print();
        //System.out.print(String.valueOf(set.contains(2)));
 
+        mBinaryTree bt = new mBinaryTree();
+        bt.add(1);
+        bt.add(2);
+        bt.add(0);
+        bt.add(4);
+System.out.print(String.valueOf(bt.contains(6)));
     }
 
 }

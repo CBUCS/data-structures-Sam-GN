@@ -1,4 +1,4 @@
-package com.data.data;
+package com.data.list;
 
 public class mNode {
     Object item;

@@ -1,4 +1,4 @@
-package com.data.data;
+package com.data.list;
 
 public class mSet implements ListInterface{
     private mLinkedList set;

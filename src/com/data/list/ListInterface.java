@@ -1,4 +1,4 @@
-package com.data.data;
+package com.data.list;
 
 public interface ListInterface {
     boolean add (Object item);

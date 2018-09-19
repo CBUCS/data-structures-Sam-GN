@@ -1,6 +1,4 @@
-package com.data.data;
-
-import java.util.Arrays;
+package com.data.list;
 
 public class mQueue implements ListInterface {
 

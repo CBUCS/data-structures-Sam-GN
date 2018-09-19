@@ -14,7 +14,7 @@
 
 ---------------  S U M M A R Y ------------
 
-Command Line: -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:31584,suspend=y,server=n -javaagent:C:\Users\ph32f\.IntelliJIdea2018.2\system\captureAgent\debugger-agent.jar=file:/C:/Users/ph32f/AppData/Local/Temp/capture.props -Dfile.encoding=UTF-8 com.data.data.Main
+Command Line: -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:31584,suspend=y,server=n -javaagent:C:\Users\ph32f\.IntelliJIdea2018.2\system\captureAgent\debugger-agent.jar=file:/C:/Users/ph32f/AppData/Local/Temp/capture.props -Dfile.encoding=UTF-8 com.data.list.Main
 
 Host: Intel(R) Core(TM) i5-7400 CPU @ 3.00GHz, 4 cores, 15G,  Windows 10 , 64 bit Build 17134 (10.0.17134.1)
 Time: Tue Sep 18 00:12:12 2018 Pacific Daylight Time elapsed time: 625 seconds (0d 0h 10m 25s)
@@ -396,10 +396,10 @@ Event: 0.165 Thread 0x000002186fd05800 Uncommon trap: reason=unstable_if action=
 Event: 0.202 Thread 0x000002186fd05800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000021807ad1e04 method=java.lang.String.charAt(I)C @ 4 c2
 
 Classes redefined (4 events):
-Event: 157.610 Thread 0x000002187f773800 redefined class name=com.data.data.mSet, count=1
-Event: 183.676 Thread 0x000002187f773800 redefined class name=com.data.data.mSet, count=2
-Event: 423.646 Thread 0x000002187f773800 redefined class name=com.data.data.mSet, count=3
-Event: 625.740 Thread 0x000002187f773800 redefined class name=com.data.data.Main, count=1
+Event: 157.610 Thread 0x000002187f773800 redefined class name=com.data.list.mSet, count=1
+Event: 183.676 Thread 0x000002187f773800 redefined class name=com.data.list.mSet, count=2
+Event: 423.646 Thread 0x000002187f773800 redefined class name=com.data.list.mSet, count=3
+Event: 625.740 Thread 0x000002187f773800 redefined class name=com.data.list.Main, count=1
 
 Internal exceptions (0 events):
 No events
@@ -473,7 +473,7 @@ symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Pr
 
 VM Arguments:
 jvm_args: -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:31584,suspend=y,server=n -javaagent:C:\Users\ph32f\.IntelliJIdea2018.2\system\captureAgent\debugger-agent.jar=file:/C:/Users/ph32f/AppData/Local/Temp/capture.props -Dfile.encoding=UTF-8 
-java_command: com.data.data.Main
+java_command: com.data.list.Main
 java_class_path (initial): C:\Users\ph32f\IdeaProjects\data-structures-Sam-GN\out\production\DataStructures;C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.3\lib\idea_rt.jar
 Launcher Type: SUN_STANDARD
 
