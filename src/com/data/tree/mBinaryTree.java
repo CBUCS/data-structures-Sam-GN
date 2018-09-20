@@ -4,12 +4,13 @@ public class mBinaryTree implements TreeInterface {
 //Technically this is a binary search tree. But still a binary search tree is kind of a binary tree.
     private binaryTreeNode root;
 
+    //to add new items to the tree
     @Override
     public boolean add(Object pItem) {
         root = insertion(root,pItem);
         return true;
     }
-
+    //removes item from the tree if available
     @Override
     public boolean remove(Object pItem) {
         if(contains(pItem)) {
@@ -20,28 +21,30 @@ public class mBinaryTree implements TreeInterface {
             return false;
     }
 
+    //searches the tree for specific item
     @Override
     public boolean contains(Object pItem) {
         return searchTree(root,pItem);
     }
 
+    //returns the number of items in the tree
     @Override
     public int numItems() {
         return count(root);
     }
-
+    //returns the height of the tree
     @Override
     public int height() {
         return calculateHeight(root);
     }
-
+    //prints all the items in the tree
     @Override
     public void print() {
         System.out.print("Model : Root(Left Leaf,Right Leaf)"+"\n");
         System.out.print(whatToPrint(root));
     }
 
-
+    //when adding new items this method is called to decide where to add the new item
     private binaryTreeNode insertion (binaryTreeNode pCurrent, Object pItem){
         //when node is empty
         if(pCurrent==null)
@@ -51,11 +54,10 @@ public class mBinaryTree implements TreeInterface {
             pCurrent.left = insertion(pCurrent.left,pItem);
         else if ((Integer)pCurrent.item<(Integer) pItem)
             pCurrent.right = insertion(pCurrent.right,pItem);
-       /* else
-            return pCurrent;*/
         return pCurrent;
     }
 
+    //when removing item from tree, this method is called to decide if tree needs to be rearranged
     private binaryTreeNode deleteNode (binaryTreeNode pCurrent, Object pItem){
         //when node is empty
         if(pCurrent==null)
@@ -105,7 +107,7 @@ public class mBinaryTree implements TreeInterface {
                 return searchTree(pCurrent.right,pItem);
         }
     }
-    //counts the nuber of nodes
+    //counts the number of nodes
     private int count (binaryTreeNode pCurrent) {
         if(pCurrent==null)
             return 0;
@@ -127,6 +129,7 @@ public class mBinaryTree implements TreeInterface {
 
         }
     }
+    //algorithm to print tree in meaningful order
     private String whatToPrint(binaryTreeNode pCurrent){
         if(pCurrent==null)
             return "Null";

@@ -4,7 +4,9 @@ package com.data.main;
 import com.data.list.*;
 import com.data.tree.mBinaryTree;
 import com.data.tree.mNaryTree;
+import com.data.tree.nAryTreeNode;
 
+//this is my main class. I only used it to test my implementations
 public class Main {
     public static void main(String[] args){
 
@@ -13,11 +15,12 @@ public class Main {
         mList.add(2);
         mList.add(3);
        mList.addAt(0,3);
+        mList.addAt(7,7);
       //  mList.removeAt(0);
        // mList.contains(1);
-      // mList.print();
+     // mList.print();
        // System.out.print(String.valueOf(mList.numItems()));
-        //System.out.print(String.valueOf( mList.grabAt(4)) );
+       // System.out.print(String.valueOf( mList.grabAt(2)) );
 
        mStack stack = new mStack();
        stack.add(1);
@@ -76,10 +79,20 @@ public class Main {
         //System.out.print(String.valueOf(bt.remove(1)));
         //System.out.print(String.valueOf(bt.contains(1)));
        // System.out.print(String.valueOf(bt.height()));
-        //bt.print();
+       // bt.print();
+        mNaryTree tree = new mNaryTree(3);
+        nAryTreeNode a = new nAryTreeNode("a",3);
+        nAryTreeNode b = new nAryTreeNode("b",3);
+        nAryTreeNode c = new nAryTreeNode("c",3);
+       tree.addRoot("root");
+       tree.getRoot().addchild(a,0);
+       a.addchild(b,0);
+        tree.getRoot().addchild(c,1);
+        int g = 5;
+        g =tree.height();
+        //System.out.print(String.valueOf(tree.contains("b")));
 
-
-       // nAry.print();
+        tree.print();
     }
 
 }

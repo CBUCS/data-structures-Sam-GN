@@ -1,12 +1,14 @@
 package com.data.list;
 
 import java.util.Arrays;
-
+//linkedlist class implementation
 public class mLinkedList implements ListInterface {
     private mNode head;
 
+    //for adding new items
     @Override
     public boolean add(Object item) {
+        //moves between nodes to find the next emty node
         mNode newNode = new mNode();
         newNode.item = item;
         if(head==null)
@@ -20,7 +22,7 @@ public class mLinkedList implements ListInterface {
         }
         return true;
     }
-
+    //move between nodes to add item at specific index if the index can be reached
     @Override
     public boolean addAt(Object item, int position) {
         mNode n = new mNode();
@@ -46,6 +48,7 @@ public class mLinkedList implements ListInterface {
 
     }
 
+    //removes given item from the list if available
     @Override
     public boolean remove(Object item) {
         mNode n = head;
@@ -70,7 +73,7 @@ public class mLinkedList implements ListInterface {
         }
         return false;
     }
-
+    //removes given object at specific index if available
     @Override
     public boolean removeAt(int position) {
         if(position>=numItems())
@@ -90,6 +93,7 @@ public class mLinkedList implements ListInterface {
         return true;
     }
 
+    //searches the list for specific item
     @Override
     public boolean contains(Object item) {
         mNode n = head;
@@ -104,7 +108,7 @@ public class mLinkedList implements ListInterface {
                 return true;
         return false;
     }
-
+    //returns the number items in list
     @Override
     public int numItems() {
         mNode n = head;
@@ -119,12 +123,10 @@ public class mLinkedList implements ListInterface {
         return count;
     }
 
+    //returns specific item at given index if available
     @Override
     public Object grabAt(int position) {
-        /*mNode n = head;
-        while(n.next!=null)
-            n = n.next;
-        return n.item;*/
+
         if(position>=numItems())
             return null;
         if(position==0)
@@ -137,6 +139,7 @@ public class mLinkedList implements ListInterface {
         }
     }
 
+    //returns an array of all the items in the list
     @Override
     public Object[] toArray() {
         Object mArray [] = new Object[numItems()];
@@ -147,34 +150,16 @@ public class mLinkedList implements ListInterface {
         }
         return mArray;
     }
-
+    //prints all the items in the list
     @Override
     public void print() {
-        /*mNode n = head;
-        while (n.next!=null){
-            System.out.print(n.item);
-            n = n.next;
-        }*/
         System.out.print(Arrays.toString(toArray())+"\n");
     }
-    @Override
-    public boolean clear(){
+        //clears the list
+        @Override
+        public boolean clear(){
         head = new mNode();
         return true;
     }
 
-
-    public Object returnItem(Object item) {
-        mNode n = head;
-        if(head ==null)
-            return false;
-        while(n.next!=null){
-            if(n.item==item)
-                return item;
-            n = n.next;
-        }
-        if(n.item==item)
-            return item;
-        return false;
-    }
 }
