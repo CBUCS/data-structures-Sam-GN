@@ -1,9 +1,8 @@
 package com.data.tree;
 
 public class mBinaryTree implements TreeInterface {
-
-    private treeNode root;
-
+//Technically this is a binary search tree. But still a binary search tree is kind of a binary tree.
+    private binaryTreeNode root;
 
     @Override
     public boolean add(Object pItem) {
@@ -43,21 +42,21 @@ public class mBinaryTree implements TreeInterface {
     }
 
 
-    private treeNode insertion (treeNode pCurrent, Object pItem){
+    private binaryTreeNode insertion (binaryTreeNode pCurrent, Object pItem){
         //when node is empty
         if(pCurrent==null)
-            return new treeNode(pItem);
+            return new binaryTreeNode(pItem);
         //decides where to put the value based on node's current value
         else if((Integer)pCurrent.item>(Integer) pItem)
             pCurrent.left = insertion(pCurrent.left,pItem);
         else if ((Integer)pCurrent.item<(Integer) pItem)
             pCurrent.right = insertion(pCurrent.right,pItem);
-        else
-            return pCurrent;
+       /* else
+            return pCurrent;*/
         return pCurrent;
     }
 
-    private treeNode deleteNode (treeNode pCurrent,Object pItem){
+    private binaryTreeNode deleteNode (binaryTreeNode pCurrent, Object pItem){
         //when node is empty
         if(pCurrent==null)
             return null;
@@ -86,7 +85,7 @@ public class mBinaryTree implements TreeInterface {
     }
 
     //finds smallest value from any given node
-    private Object findSmallestItem (treeNode pNode){
+    private Object findSmallestItem (binaryTreeNode pNode){
         if(pNode.left==null)
             return pNode.item;
         else
@@ -94,7 +93,7 @@ public class mBinaryTree implements TreeInterface {
     }
 
     //searches the tree for item
-    private boolean searchTree (treeNode pCurrent,Object pItem){
+    private boolean searchTree (binaryTreeNode pCurrent, Object pItem){
         if(pCurrent==null)
             return false;
         else if(pCurrent.item==pItem)
@@ -107,7 +106,7 @@ public class mBinaryTree implements TreeInterface {
         }
     }
     //counts the nuber of nodes
-    private int count (treeNode pCurrent) {
+    private int count (binaryTreeNode pCurrent) {
         if(pCurrent==null)
             return 0;
         else{
@@ -118,7 +117,7 @@ public class mBinaryTree implements TreeInterface {
         }
     }
     //calculates the height of the tree
-    private int calculateHeight(treeNode pCurrent){
+    private int calculateHeight(binaryTreeNode pCurrent){
         if(pCurrent==null)
             return 0;
         else{
@@ -128,7 +127,7 @@ public class mBinaryTree implements TreeInterface {
 
         }
     }
-    private String whatToPrint(treeNode pCurrent){
+    private String whatToPrint(binaryTreeNode pCurrent){
         if(pCurrent==null)
             return "Null";
         else{

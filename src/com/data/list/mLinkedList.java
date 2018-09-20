@@ -162,4 +162,19 @@ public class mLinkedList implements ListInterface {
         head = new mNode();
         return true;
     }
+
+
+    public Object returnItem(Object item) {
+        mNode n = head;
+        if(head ==null)
+            return false;
+        while(n.next!=null){
+            if(n.item==item)
+                return item;
+            n = n.next;
+        }
+        if(n.item==item)
+            return item;
+        return false;
+    }
 }
