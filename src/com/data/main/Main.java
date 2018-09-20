@@ -1,6 +1,7 @@
-package com.data.list;
+package com.data.main;
 
 
+import com.data.list.*;
 import com.data.tree.mBinaryTree;
 import com.data.tree.mNaryTree;
 
@@ -77,24 +78,8 @@ public class Main {
        // System.out.print(String.valueOf(bt.height()));
         //bt.print();
 
-        mNaryTree nAry = new mNaryTree("matter",3);
-        nAry.add("pure");
-        nAry.getLeaf(0).add("elements");
-        nAry.getLeaf(0).getLeaf(0).add("metals");
-        nAry.getLeaf(0).getLeaf(0).add("metal2");
-        nAry.getLeaf(0).getLeaf(0).add("metal3");
-        nAry.getLeaf(0).add("compunents");
-        nAry.getLeaf(0).getLeaf(1).add("water");
-        nAry.getLeaf(0).getLeaf(1).add("carbon");
-        nAry.getLeaf(0).getLeaf(1).add("salt");
-        nAry.add("mixture");
-        nAry.getLeaf(1).add("homo");
-        nAry.getLeaf(1).getLeaf(0).add("metals");
-        nAry.getLeaf(1).getLeaf(0).add("metal2");
-        nAry.getLeaf(1).add("hetro");
-        nAry.getLeaf(1).getLeaf(1).add("colloid");
-        nAry.getLeaf(1).getLeaf(1).add("suspension");
-        nAry.print();
+
+       // nAry.print();
     }
 
 }
