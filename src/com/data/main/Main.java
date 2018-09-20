@@ -88,11 +88,11 @@ public class Main {
        tree.getRoot().addchild(a,0);
        a.addchild(b,0);
         tree.getRoot().addchild(c,1);
-        int g = 5;
-        g =tree.height();
+
+
         //System.out.print(String.valueOf(tree.contains("b")));
 
-        tree.print();
+       // tree.print();
     }
 
 }

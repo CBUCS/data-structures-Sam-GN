@@ -120,7 +120,7 @@ public class mNaryTree implements TreeInterface {
 
         return m;
     }*/
-    //These methods are never used and will alwayes return false
+    //These methods are never used and will always return false
     @Override
     public boolean add(Object item) {
         return false;
