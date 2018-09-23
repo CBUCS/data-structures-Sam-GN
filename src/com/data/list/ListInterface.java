@@ -1,14 +1,14 @@
 package com.data.list;
 
-public interface ListInterface {
-    boolean add (Object item);
-    boolean addAt (Object item, int position);
-    boolean remove (Object item);
+public interface ListInterface <T> {
+    boolean add (T item);
+    boolean addAt (T item, int position);
+    boolean remove (T item);
     boolean removeAt (int position);
-    boolean contains (Object item);
+    boolean contains (T item);
     int numItems();
-    Object grabAt(int position);
-    Object[] toArray();
+    T grabAt(int position);
+    T[] toArray();
     void print();
     boolean clear();
 }

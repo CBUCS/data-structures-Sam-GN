@@ -2,47 +2,47 @@ package com.data.list;
 
 import java.util.Arrays;
 //linkedlist class implementation
-public class mLinkedList implements ListInterface {
-    private mNode head;
+public class mLinkedList <T>implements ListInterface<T> {
+    private mNode<T> head;
 
     //for adding new items
     @Override
-    public boolean add(Object item) {
+    public boolean add(T item) {
         //moves between nodes to find the next emty node
-        mNode newNode = new mNode();
-        newNode.item = item;
-        if(head==null)
-            head = newNode;
+        mNode<T> newNode = new mNode<T>();
+        newNode.setItem(item);
+        if(this.head==null)
+            this.head = newNode;
         else{
-             mNode n = head;
-             while(n.next!=null){
-                 n = n.next;
+             mNode<T> n = this.head;
+             while(n.getNext()!=null){
+                 n = n.getNext();
              }
-             n.next = newNode;
+             n.setNext(newNode);
         }
         return true;
     }
     //move between nodes to add item at specific index if the index can be reached
     @Override
-    public boolean addAt(Object item, int position) {
-        mNode n = new mNode();
-        n.item = item;
-        n.next = null;
+    public boolean addAt(T item, int position) {
+        mNode<T> n = new mNode<T>();
+        n.setItem(item);
+        n.setNext(null);
 
         if(position==0){
-            n.next = head;
-            head = n;
+            n.setNext(this.head);
+            this.head = n;
             return true;
         }
         if(position>numItems())
             return false;
         else {
-            mNode n2 = head;
+            mNode<T> n2 = this.head;
             for(int i=0;i<position-1;i++){
-                n2 = n2.next;
+                n2 = n2.getNext();
             }
-            n.next = n2.next;
-            n2.next = n;
+            n.setNext(n2.getNext());
+            n2.setNext(n);
             return true;
         }
 
@@ -50,25 +50,25 @@ public class mLinkedList implements ListInterface {
 
     //removes given item from the list if available
     @Override
-    public boolean remove(Object item) {
-        mNode n = head;
-        mNode n2 = null;
-        while(n.next!=null){
-            if(n.item==item){
+    public boolean remove(T item) {
+        mNode<T> n = head;
+        mNode<T> n2 = null;
+        while(n.getNext()!=null){
+            if(n.getItem()==item){
                 if(n==head) {
-                    head = head.next;
+                    this.head = this.head.getNext();
                     return true;
                 }
                 else{
-                  n2.next = n.next;
+                  n2.setNext(n.getNext());
                   return true;
                 }
             }
             n2 = n;
-            n = n.next;
+            n = n.getNext();
         }
-        if(n.item==item){
-            n2.next = null;
+        if(n.getItem()==item){
+            n2.setNext(null);
             return true;
         }
         return false;
@@ -79,14 +79,14 @@ public class mLinkedList implements ListInterface {
         if(position>=numItems())
             return false;
         if(position==0)
-            head = head.next;
+            this.head = this.head.getNext();
         else{
-            mNode n = head;
-            mNode n2 = null;
+            mNode<T> n = this.head;
+            mNode<T> n2 = null;
             for(int i=0;i<position-1;i++)
-                n = n.next;
-            n2 = n.next;
-            n.next = n2.next;
+                n = n.getNext();
+            n2 = n.getNext();
+            n.setNext(n2.getNext());
         }
 
 
@@ -95,29 +95,29 @@ public class mLinkedList implements ListInterface {
 
     //searches the list for specific item
     @Override
-    public boolean contains(Object item) {
-        mNode n = head;
-        if(head ==null)
+    public boolean contains(T item) {
+        mNode<T> n = this.head;
+        if(this.head ==null)
             return false;
-        while(n.next!=null){
-            if(n.item==item)
+        while(n.getNext()!=null){
+            if(n.getItem()==item)
                 return true;
-            n = n.next;
+            n = n.getNext();
         }
-            if(n.item==item)
+            if(n.getItem()==item)
                 return true;
         return false;
     }
     //returns the number items in list
     @Override
     public int numItems() {
-        mNode n = head;
+        mNode<T> n = this.head;
         int count =0;
-        if(head == null)
+        if(this.head == null)
             return 0;
-        while (n.next!=null){
+        while (n.getNext()!=null){
             count ++;
-            n = n.next;
+            n = n.getNext();
         }
         count++;
         return count;
@@ -125,28 +125,28 @@ public class mLinkedList implements ListInterface {
 
     //returns specific item at given index if available
     @Override
-    public Object grabAt(int position) {
+    public T grabAt(int position) {
 
         if(position>=numItems())
             return null;
         if(position==0)
-            return head.item;
+            return this.head.getItem();
         else{
-            mNode n = head;
+            mNode<T> n = this.head;
             for(int i=0;i<position;i++)
-                n = n.next;
-            return n.item;
+                n = n.getNext();
+            return  n.getItem();
         }
     }
 
     //returns an array of all the items in the list
     @Override
-    public Object[] toArray() {
-        Object mArray [] = new Object[numItems()];
-        mNode n = head;
+    public T[] toArray() {
+        T[] mArray  =  (T[]) new Object[this.numItems()];
+        mNode<T> n = this.head;
         for (int i=0; i<numItems();i++){
-            mArray[i] = n.item;
-            n = n.next;
+            mArray[i] = n.getItem();
+            n = n.getNext();
         }
         return mArray;
     }
@@ -158,7 +158,7 @@ public class mLinkedList implements ListInterface {
         //clears the list
         @Override
         public boolean clear(){
-        head = new mNode();
+        this.head = new mNode<T>();
         return true;
     }
 

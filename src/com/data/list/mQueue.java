@@ -1,65 +1,66 @@
 package com.data.list;
 
-public class mQueue implements ListInterface {
+public class mQueue<T> implements ListInterface<T> {
 
 
-    private mLinkedList Queue;
+    private mLinkedList<T> Queue;
 
     public mQueue (){
-       Queue = new mLinkedList();
+       this.Queue = new mLinkedList<T>();
     }
     //adds item to the queue
     @Override
-    public boolean add(Object item) {
+    public boolean add(T item) {
 
-       Queue.addAt(item,0);
+       this.Queue.addAt(item,0);
             return true;
     }
     //removes item from queue
-    public Object dequeue (){
-        mNode n = new mNode();
-        n.item = Queue.grabAt(numItems()-1);
-        Queue.removeAt(numItems()-1);
-        return n.item;
+    public T dequeue (){
+        mNode<T> n = new mNode<T>();
+        n.setItem(this.Queue.grabAt(numItems()-1));
+        this.Queue.removeAt(numItems()-1);
+        return n.getItem();
     }
     //searches the queue for specific item
     @Override
-    public boolean contains(Object item) {
-        return Queue.contains(item);
+    public boolean contains(T item) {
+        return this.Queue.contains(item);
     }
     //returns the number of items in the queue
     @Override
     public int numItems() {
-        return Queue.numItems();
+        return this.Queue.numItems();
     }
     //returns an array of all the items in the queue
     @Override
-    public Object[] toArray() {
-        return Queue.toArray();
+    public T[] toArray() {
+        return this.Queue.toArray();
     }
     // prints all the items in the queue
     @Override
     public void print() {
-       Queue.print();
+       this.Queue.print();
     }
     //clears the queue
     @Override
     public boolean clear(){
-        Queue = new mLinkedList();
+        this.Queue = new mLinkedList<T>();
         return true;
     }
+
     //these methods are not used in this class and will always return false or null where needed
     @Override
-    public boolean addAt(Object item, int position) { return false; }
+    public boolean addAt(T item, int position) { return false; }
 
     @Override
-    public boolean remove(Object item) { return false; }
+    public boolean remove(T item) { return false; }
 
     @Override
     public boolean removeAt(int position) { return false; }
 
     @Override
-    public Object grabAt(int position) { return null; }
+    public T grabAt(int position) { return null; }
 
 
 }

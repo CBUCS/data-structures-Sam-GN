@@ -1,14 +1,37 @@
 package com.data.tree;
 
-public class binaryTreeNode {
+public class binaryTreeNode<T> {
     //node class for binary tree. it stores an item and has the attribute to point to the next two nodes
-    Object item;
-    binaryTreeNode left;
-    binaryTreeNode right;
+    private T item;
+    private binaryTreeNode<T> left;
+    private binaryTreeNode<T> right;
 
-    public binaryTreeNode(Object pItem){
-        item = pItem;
-        left = null;
-        right = null;
+    public binaryTreeNode(T pItem){
+        this.item = pItem;
+        this.left = null;
+        this.right = null;
+    }
+
+    public void setItem(T item) {
+        this.item = item;
+    }
+    public void setLeft(binaryTreeNode<T> left) {
+        this.left = left;
+    }
+
+    public void setRight(binaryTreeNode<T> right) {
+        this.right = right;
+    }
+
+    public T getItem() {
+        return this.item;
+    }
+
+    public binaryTreeNode<T> getLeft() {
+        return this.left;
+    }
+
+    public binaryTreeNode<T> getRight() {
+        return this.right;
     }
 }
