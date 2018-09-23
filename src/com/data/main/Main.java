@@ -80,14 +80,14 @@ public class Main {
         bt.add(4);
         bt.add(5);
         bt.add(0);
-        System.out.print(String.valueOf(bt.remove(1)));
+      //  System.out.print(String.valueOf(bt.remove(1)));
         //System.out.print(String.valueOf(bt.contains(1)));
        // System.out.print(String.valueOf(bt.height()));
-        bt.print();
-        mNaryTree tree = new mNaryTree(3);
-        nAryTreeNode a = new nAryTreeNode("a",3);
-        nAryTreeNode b = new nAryTreeNode("b",3);
-        nAryTreeNode c = new nAryTreeNode("c",3);
+       // bt.print();
+        mNaryTree<String> tree = new mNaryTree<String>(3);
+        nAryTreeNode<String> a = new nAryTreeNode<String>("a",3);
+        nAryTreeNode<String> b = new nAryTreeNode<String>("b",3);
+        nAryTreeNode<String> c = new nAryTreeNode<String>("c",3);
        tree.addRoot("root");
        tree.getRoot().addchild(a,0);
        a.addchild(b,0);
@@ -96,7 +96,7 @@ public class Main {
 
         //System.out.print(String.valueOf(tree.contains("b")));
 
-       // tree.print();
+        tree.print();
     }
 
 }

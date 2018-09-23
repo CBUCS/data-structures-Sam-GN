@@ -7,19 +7,19 @@ import com.data.list.mLinkedList;
 // Code by: L Petre
 // I modified the code
 
-public class nAryTreeNode {
-    Object item;
-    mLinkedList leaves;
-    nAryTreeNode parrent;
-    int MAXSIZE;
-    public nAryTreeNode(Object pItem,int pMAXSIZE){
-        MAXSIZE = pMAXSIZE;
-        item = pItem;
-        leaves = new mLinkedList();
+public class nAryTreeNode<T> {
+    T item;
+     mLinkedList<T> leaves;
+     nAryTreeNode parrent;
+     int MAXSIZE;
+    public nAryTreeNode(T pItem,int pMAXSIZE){
+        this.MAXSIZE = pMAXSIZE;
+        this.item = pItem;
+        this.leaves = new mLinkedList<T>();
     }
     //this method adds a new node to the previous node
-    public boolean addchild (nAryTreeNode child, int position){
-        if(position>=MAXSIZE-1){
+    public boolean addchild (nAryTreeNode<T> child, int position){
+        if(position>=this.MAXSIZE-1){
             System.out.println("exceeded max number ");
             return false;
         }
@@ -30,7 +30,7 @@ public class nAryTreeNode {
             }
             else{
                 child.parrent=this;
-                this.leaves.addAt(child,position);
+                this.leaves.addAt((T)child,position);
                 return true;
             }
 
@@ -38,24 +38,24 @@ public class nAryTreeNode {
     }
     //this method removes a child at specific index and its decedents if available
     public boolean removeChildAtIndex (int position){
-        if(leaves.numItems()<position){
+        if(this.leaves.numItems()<position){
             System.out.println("No child with this index found");
             return false;
         }
-        if(position>=MAXSIZE-1){
+        if(position>=this.MAXSIZE-1){
             System.out.println("exceeded max number ");
             return false;
         }
         else{
-            leaves.removeAt(position);
+            this.leaves.removeAt(position);
             return true;
         }
     }
     //this method removes a specific child and its decedents if available
-    public boolean removeChild (nAryTreeNode child){
-        if(leaves.contains(child))
+    public boolean removeChild (nAryTreeNode<T> child){
+        if(this.leaves.contains((T)child))
         {
-            leaves.remove(child);
+            this.leaves.remove((T)child);
             return true;
         }
         else{
