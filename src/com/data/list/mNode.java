@@ -1,7 +1,15 @@
 package com.data.list;
 
-public class mNode {
+public class mNode<T> {
     //create node for linkedlist
-    Object item;
+    T item;
     mNode next;
+
+    public void setItem(T item) {
+        this.item = item;
+    }
+
+    public void setNext(mNode next) {
+        this.next = next;
+    }
 }
