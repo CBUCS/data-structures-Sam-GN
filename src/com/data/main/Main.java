@@ -85,13 +85,18 @@ public class Main {
        // System.out.print(String.valueOf(bt.height()));
        // bt.print();
         mNaryTree<String> tree = new mNaryTree<String>(3);
-        nAryTreeNode<String> a = new nAryTreeNode<String>("a",3);
-        nAryTreeNode<String> b = new nAryTreeNode<String>("b",3);
-        nAryTreeNode<String> c = new nAryTreeNode<String>("c",3);
-       tree.addRoot("root");
-       tree.getRoot().addchild(a,0);
-       a.addchild(b,0);
-        tree.getRoot().addchild(c,1);
+        tree.add("a");
+        tree.add("b");
+        tree.add("c");
+        tree.add("d");
+        tree.add("e");
+        tree.add("f");
+        tree.add("g");
+        tree.add("h");
+        tree.DFS();
+        tree.BFS();
+        System.out.println(tree.contains("g"));
+        System.out.println(tree.numItems());
 
 
         //System.out.print(String.valueOf(tree.contains("b")));

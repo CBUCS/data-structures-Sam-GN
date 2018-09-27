@@ -1,11 +1,12 @@
 package com.data.tree;
 
 import com.data.list.mLinkedList;
-//I was not familiar with N-Ary Trees. After reading about them I tried for many hours to implement it on my own but I couldn't.
-//I found this algorithm on stackoverflow
-//Source https://stackoverflow.com/questions/30460565/k-ary-tree-implementation-in-java-how-to
-// Code by: L Petre
-//I modified it
+import com.data.list.mQueue;
+import com.data.list.mStack;
+
+//This time I used the hint you gave us in class and used my queue and stack classes to figure out
+//the next place to add items. Unlike last time, I created this class on my own.
+
 public class mNaryTree<T> implements TreeInterface<T> {
 
     private nAryTreeNode<T> root;
@@ -15,69 +16,117 @@ public class mNaryTree<T> implements TreeInterface<T> {
     public mNaryTree(int pMAXSIZE){
         MAXSIZE = pMAXSIZE;
     }
-    //returns the root of the tree
-    public nAryTreeNode<T> getRoot (){
-        return this.root;
-    }
-    //adds new item as root of the tree
-    public void addRoot (T pItem){
-        root = new nAryTreeNode<T>(pItem,MAXSIZE);
-        root.parrent = null;
-        root.leaves = new mLinkedList<T>();
-    }
-    //adds new child at any given specific index of a node's children
-    public void addNewNodeAtIndexChildOfNodeU (nAryTreeNode<T> u, T pItem, int i){
-        nAryTreeNode<T> child = new nAryTreeNode<T>(pItem,MAXSIZE);
-        u.addchild(child,i);
-    }
-    //returns the number of nodes in tree
-    private int numberOfNodesInTree (nAryTreeNode<T> n){
-        int count = 0;
-        count++;
-        nAryTreeNode<T> n2;
-        if(n.leaves.numItems()!=0){
-            //searches each node for its children and calculates their size too
-            for(int i=0;i<n.leaves.numItems();i++){
-                n2= (nAryTreeNode<T>) n.leaves.grabAt(i);
-                count += numberOfNodesInTree(n2);
-            }
-        }
-        return count;
-    }
-    //changes the root of the tree to a new node
-    public void changeRoot (nAryTreeNode<T> newRoot, int i){
-        nAryTreeNode<T> oldRoot = this.root;
-        newRoot.parrent = null;
-        newRoot.addchild(oldRoot,i);
-        oldRoot.parrent=newRoot;
-        this.root=newRoot;
-    }
-    //calculates the number of nodes in the tree
+
+
     @Override
-    public int numItems() {
-        return numberOfNodesInTree(this.root);
+    public boolean add(T pItem) {
+        if(root == null){
+            root = new nAryTreeNode<T>(pItem);
+            return true;
+        }
+        //using a BFS like algorithm for finding the first empty node
+        mQueue<nAryTreeNode<T>> queue= new mQueue<>();
+        queue.add(root);
+        while (queue.numItems()>0)
+        {
+
+            nAryTreeNode<T> tempNode = queue.dequeue();
+
+            for(int i=0;i<MAXSIZE;i++){
+                if (tempNode.getLeaves().grabAt(i) == null) {
+                    tempNode.addItem(pItem);
+                    return true;
+                }
+            }
+
+            for(int i=0;i<MAXSIZE;i++){
+                if (tempNode.getLeaves().grabAt(i) != null) {
+                    queue.add(tempNode.getLeaves().grabAt(i));
+                }
+            }
+
+        }
+        return false;
+
     }
+    //implementing BFS
+    public void BFS() {
+        //uses a queue to know which item to print
+        System.out.print("BFS: ");
+        mQueue<nAryTreeNode<T>> queue= new mQueue<>();
+        queue.add(root);
+        while (queue.numItems()>0)
+        {
+
+            nAryTreeNode<T> tempNode = queue.dequeue();
+            System.out.print(tempNode.getItem() + " ");
+
+            for(int i=0;i<MAXSIZE;i++){
+                if (tempNode.getLeaves().grabAt(i) != null) {
+                    queue.add(tempNode.getLeaves().grabAt(i));
+                }
+            }
+
+        }
+        System.out.println("");
+
+    }
+
+    // implementing a DFS
+    public  void DFS(){
+        //uses a stack to know which item to print.
+        if(root == null)
+            return;
+        System.out.print("DFS: ");
+        mStack<nAryTreeNode<T>> res = new mStack<nAryTreeNode<T>>();
+        res.add(root);
+        while(res.numItems()>0){
+            nAryTreeNode<T> top = res.pop();
+            System.out.print(top.getItem() + " ");
+            for(int i=MAXSIZE-1;i>=0;i--){
+                if (top.getLeaves().grabAt(i) != null) {
+                    res.add(top.getLeaves().grabAt(i));
+                }
+            }
+
+        }
+        System.out.println("");
+
+    }
+
     //searches the tree for specific item
     @Override
     public boolean contains(T item) {
-        if(root.item==item)
-            return true;
-        else return searchTree(this.root,item);
+        if(root == null)
+            return false;
 
-    }
-    //this method goes through all the nodes and returns true if it found the specific item
-    private boolean searchTree (nAryTreeNode<T> n,T pItem){
-        nAryTreeNode<T> n2;
-        if(n.leaves.numItems()!=0){
-            for(int i=0;i<n.leaves.numItems();i++){
-                n2= (nAryTreeNode<T>) n.leaves.grabAt(i);
-                if(n2.item==pItem)
-                    return true;
-                return  searchTree(n2,pItem);
+        mStack<nAryTreeNode<T>> res = new mStack<nAryTreeNode<T>>();
+        res.add(root);
+        //first check the last item in the stack, if item do not match, adds the node's children to the stack
+        //and continue until either item is found or stack is empty
+        while(res.numItems()>0){
+            nAryTreeNode<T> top = res.pop();
+            if(top.getItem().equals(item))
+                return true;
+            for(int i=MAXSIZE-1;i>=0;i--){
+                if (top.getLeaves().grabAt(i) != null) {
+                    res.add(top.getLeaves().grabAt(i));
+                }
             }
+
         }
         return false;
     }
+
+    //returns the  number of items in the tree
+    @Override
+    public int numItems() {
+        mLinkedList<T> newList = new mLinkedList<T>();
+        newList = toList(this.root,newList);
+
+        return newList.numItems();
+    }
+
 
     //prints all the items in the tree
     @Override
@@ -88,43 +137,28 @@ public class mNaryTree<T> implements TreeInterface<T> {
         newList.print();
     }
     //creates a list of all the elements in the tree
-    private mLinkedList<T> toList (nAryTreeNode<T> n, mLinkedList<T> m) {
-        if (n.item != null)
-            m.add(n.item);
+    private mLinkedList<T> toList (nAryTreeNode<T> pNode1, mLinkedList<T> pNode2) {
+        if (pNode1.getItem() != null)
+            pNode2.add(pNode1.getItem());
         nAryTreeNode<T> n2;
-        if (n.leaves.numItems() != 0) {
-            for (int i = 0; i < n.leaves.numItems(); i++) {
-                n2 = (nAryTreeNode<T>) n.leaves.grabAt(i);
-                m = toList(n2, m);
+        if (pNode1.getLeaves().numItems() != 0) {
+            for (int i = 0; i < pNode1.getLeaves().numItems(); i++) {
+                //adds the children of the node to the list.
+                n2 = (nAryTreeNode<T>) pNode1.getLeaves().grabAt(i);
+                pNode2 = toList(n2, pNode2);
             }
 
         }
-        return m;
+        return pNode2;
     }
 
 
 
 
 
-/*    private mLinkedList calculateHeight (nAryTreeNode n,mLinkedList m){
-        int count = 0;
-        count++;
-        nAryTreeNode n2;
 
-        if(n.leaves.numItems()!=0){
-            for(int i=0;i<n.leaves.numItems();i++){
-                n2= (nAryTreeNode) n.leaves.grabAt(i);
-                m = calculateHeight(n2,m);
-            }
-        }
-
-        return m;
-    }*/
     //These methods are never used and will always return false
-    @Override
-    public boolean add(T item) {
-        return false;
-    }
+
 
     @Override
     public boolean remove(T item) {
